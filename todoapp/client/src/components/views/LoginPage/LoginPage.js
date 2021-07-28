@@ -24,10 +24,10 @@ const LoginPage = (props) => {
 
     dispatch(loginUser(body))
       .then(response => {
-        if (response.payload.loginSuccess) {
+        if (response.payload.success) {
           props.history.push('/');
         } else {
-          alert('Error');
+          alert('로그인에 실패 했습니다.');
         }
       })
   }

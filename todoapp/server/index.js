@@ -43,7 +43,7 @@ app.post('/api/users/login', (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
-        loginSuccess: false,
+        success: false,
         message: "제공된 이메일에 해당하는 유저가 없습니다."
       });
     }
@@ -51,7 +51,7 @@ app.post('/api/users/login', (req, res) => {
     // 데이터베이스에 이메일이 존재하면 비밀번호가 맞는 비밀번호인지 확인
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch)
-        return res.json({ loginSuccess: false, message: "비밀번호가 틀렸습니다." });
+        return res.json({ success: false, message: "비밀번호가 틀렸습니다." });
 
       // 비밀번호까지 맞다면 토큰을 생성
       user.generateToken((err, user) => {
@@ -60,7 +60,7 @@ app.post('/api/users/login', (req, res) => {
         // 토큰을 저장 : 어디에? 쿠키, 로컬스토리지, 세션스토리지
         res.cookie("x_auth", user.token)
           .status(200)
-          .json({ loginSuccess: true, userId: user._id });
+          .json({ success: true, userId: user._id });
       });
     });
   });

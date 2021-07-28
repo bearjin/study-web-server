@@ -1,15 +1,20 @@
-import React, { useEffect } from 'react'
-import axios from 'axios';
+import React from 'react';
+import Axios from 'axios';
 
-const LandingPage = () => {
-
-  useEffect(() => {
-    axios.get('/api/hello')
-      .then(response => console.log(response.data));
-  }, [])
+const LandingPage = (props) => {
+  const onClickLogoutBtn = () => {
+    Axios.get('/api/users/logout')
+      .then(response => {
+        if (response.data.success) {
+          props.history.push('/login');
+        } else {
+          alert('로그아웃에 실패 했습니다.');
+        }
+      });
+  }
   return (
     <div>
-      LandingPage 입니다.
+      <button onClick={onClickLogoutBtn}>로그아웃</button>
     </div>
   );
 }
