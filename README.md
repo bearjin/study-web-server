@@ -106,3 +106,6 @@ module.exports = function (app) {
 
 ### Ant Design
 - 사이즈가 크지만 스타일이 깔끔하고 사용법이 쉽다.
+
+## Redux
+- 컴포넌트들의 state를 한곳에서 관리하며 단방향 데이터 흐름을 사용하는 Javascript 라이브러리 입니다.
