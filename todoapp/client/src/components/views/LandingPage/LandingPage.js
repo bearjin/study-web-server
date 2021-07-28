@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import { withRouter } from 'react-router';
 
 const LandingPage = (props) => {
   const onClickLogoutBtn = () => {
@@ -19,4 +20,4 @@ const LandingPage = (props) => {
   );
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);
